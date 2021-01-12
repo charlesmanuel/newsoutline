@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light myNav">
         <a class="navbar-brand" href="#"><b>NewsOutline</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -33,7 +33,12 @@
     </div>
     <!-- Load JavaScript -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+    <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
 
+    <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+
+    <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+        crossorigin></script>
 </body>
 
 </html>

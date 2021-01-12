@@ -22,12 +22,16 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
+    "css-loader": "^5.0.1",
     "jsonlint": "1.6.3",
     "moment": "2.29.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "16.13.1",
-    "react-infinite-scroll-component": "5.1.0"
+    "react-infinite-scroll-component": "5.1.0",
+    "style-loader": "^2.0.0"
   },
   "engines": {
     "node": ">=10.0.0"

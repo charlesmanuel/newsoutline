@@ -19,7 +19,7 @@ from flask import (
     url_for
 )
 app = Flask(__name__)
-DATABASE = '../var/newsoutline.sqlite3'
+DATABASE = 'var/newsoutline.sqlite3'
 
 
 def get_db():
@@ -45,16 +45,48 @@ def homepage():
     return render_template("index.html")
 
 
-@app.route("/api/v1/posts/", methods=["GET"])
-def get_posts():
+@app.route("/api/post/<postid>/", methods=["GET"])
+def get_post(postid):
     connection = get_db()
-    today = datetime.date.today()
     cur = connection.execute(
-        'SELECT title FROM posts WHERE article_date="{today}"'.format(
-            today=today
+        'SELECT * FROM posts WHERE post_id="{post_id}"'.format(
+            post_id=postid
         )
     )
     res = cur.fetchone()
     title = str(res["title"])
-    context = {"post_title": title}
+    bullets = []
+    article_url = str(res["article_url"])
+    article_source = str(res["article_source"])
+    cur_bullets = connection.execute(
+        'SELECT bullet_text FROM article_bullets WHERE post_id="{post_id}" '
+        'ORDER BY position ASC;'.format(post_id=postid)
+    )
+    res_bullets = cur_bullets.fetchall()
+    for bullet in res_bullets:
+        bullets.append(str(bullet["bullet_text"]))
+    context = {"post_title": title,
+               "article_url": article_url,
+               "article_source": article_source,
+               "article_bullets": bullets}
+    return jsonify(**context)
+
+
+@app.route("/api/posts/<page_num>/", methods=["GET"])
+def get_post_list(page_num):
+    connection = get_db()
+    today = datetime.date.today()
+    page = int(page_num)
+    post_list = []
+    cur_posts = connection.execute(
+        'SELECT post_id ' 'FROM posts '
+        'WHERE article_date="{today}" '
+        'LIMIT 3 OFFSET {offset}'.format(today=today,
+                                         offset=page*3)
+    )
+    response = cur_posts.fetchall()
+    for post_id in response:
+        post_list.append(post_id["post_id"])
+    context = {"post_list": post_list}
+    print(context)
     return jsonify(**context)
