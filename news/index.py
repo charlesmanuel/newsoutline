@@ -81,8 +81,9 @@ def get_post_list(page_num):
     cur_posts = connection.execute(
         'SELECT post_id ' 'FROM posts '
         'WHERE article_date="{today}" '
-        'LIMIT 3 OFFSET {offset}'.format(today=today,
-                                         offset=page*3)
+        'ORDER BY post_id ASC '
+        'LIMIT 8 OFFSET {offset}'.format(today=today,
+                                         offset=page*8)
     )
     response = cur_posts.fetchall()
     for post_id in response:

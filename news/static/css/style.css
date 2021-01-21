@@ -3,3 +3,86 @@
     border-bottom:solid;
     margin-bottom:45px;
 }
+.articleBox {
+    padding: 20px 30px 15px 30px;
+    margin-bottom: 20px;
+    background-color: white!important;
+    border-width: 3px!important;
+}
+:root {
+    --toggler-width: 400;
+    --toggler-height: 100px;
+    --menu-starting-top: 0px;
+    --menu-ending-top: 100px;
+    --menu-width: 400;
+    --menu-max-height: 1000px;
+    --fade-from-color: transparent;
+    --fade-to-color: black;
+    --timeout: 1000ms;
+}
+  
+.container {
+position: relative;
+}
+
+.toggler {
+position: relative;
+z-index: 2;
+width: var(--toggler-width);
+height: var(--toggler-height);
+background-color: var(--toggler-bg-color);
+border: none;
+border-radius: 5px;
+outline: none;
+cursor: pointer;
+transition: 1000ms;
+}
+
+.toggler--active {
+background-color: var(--toggler-active-bg-color);
+}
+.display-enter {
+top: var(--menu-starting-top);
+width: var(--toggler-width);
+max-height: var(--toggler-height);
+color: var(--fade-from-color);
+}
+
+.display-enter-active {
+top: var(--menu-ending-top);
+width: var(--menu-width);
+max-height: var(--menu-max-height);
+color: var(--fade-to-color);
+transition: all var(--timeout);
+}
+
+/* .display-exit {
+top: var(--menu-ending-top);
+width: var(--menu-width);
+max-height: var(--menu-max-height);
+color: var(--fade-to-color);
+}
+
+.display-exit-active {
+top: var(--menu-starting-top);
+width: var(--toggler-width);
+max-height: var(--toggler-height);
+color: var(--fade-from-color);
+transition: all var(--timeout);
+} */
+.articleSource {
+    margin-top:5px;
+    margin-bottom:10px;
+}
+.articleTitle{
+    cursor:pointer;
+}
+.articleTitle:hover b{
+    text-decoration:underline;
+}
+.BusinessInsider {
+    max-height:.75rem;
+}
+.FreeBeacon {
+    max-height:1.75rem;
+}
